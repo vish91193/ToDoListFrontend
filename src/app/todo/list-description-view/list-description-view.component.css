@@ -1,0 +1,7 @@
+.handOnHover{
+    cursor: pointer;transition: all .25s ease-in-out;
+}
+
+.myspiner /deep/ .black-overlay{
+    position: fixed;
+}

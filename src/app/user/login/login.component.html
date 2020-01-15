@@ -1,0 +1,145 @@
+<!-- loader -->
+<ngx-spinner class="myspiner" bdColor="rgba(51,51,51,0.8)" size="large" color="#fff" loadingText="Loading..."
+    type="ball-clip-rotate-pulse">
+</ngx-spinner>
+<div class="container">
+    <h6 class="display-4 " style="text-align: center">Log In To Your Account!!</h6>
+    <br>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" [(ngModel)]="loginEmail" name="loginEmail"
+                aria-describedby="emailHelp" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="loginPassword" name="loginPassword"
+                placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+        or
+        <a style="text-decoration-line: none;color: blue;cursor: pointer;transition: all .25s ease-in-out;"
+            data-toggle="modal" data-target="#exampleModal1">forgot password?</a>
+    </form>
+    <br>
+
+    <!--ForgotPassword Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #forgetPasswordForm="ngForm" (ngSubmit)="forgotPassword()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email Id</label>
+                            <input type="text" class="form-control" [(ngModel)]="forgetPassEmail" name="forgetPassEmail"
+                                aria-describedby="firstNameHelp" placeholder="Enter your registered email id" required>
+                            <small id="emailHelp" class="form-text text-muted">You will receive a mail on your email id
+                                to change your password.</small>
+                        </div>
+
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="!forgetPasswordForm.form.valid">Next</button>
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <p>
+        <span class="font-weight-light">Need a account?</span>&nbsp;
+        <a style="text-decoration-line: none;color: blue;cursor: pointer;transition: all .25s ease-in-out;"
+            data-toggle="modal" data-target="#exampleModal">Sign-Up</a>
+    </p>
+
+    <!--SignUp Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Welcome,Register to be our member!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #createSignupForm="ngForm" (ngSubmit)="signUp()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">First Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName"
+                                aria-describedby="firstNameHelp" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Last Name</label>
+                            <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName"
+                                placeholder="Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" [(ngModel)]="password" name="password"
+                                placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" [(ngModel)]="email" name="email"
+                                aria-describedby="emailHelp" placeholder="Email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Country</label>
+                            <select [(ngModel)]="countryCategory" #category="ngModel" name="countryCategory"
+                                (change)="onChange($event)" class="form-control" id="category" required>
+                                <option *ngFor="let category of possibleCategories | keyvalue" [value]="category.key">
+                                    {{category.value}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Mobile Number</label>
+                            <div class="row">
+                                <div class="col-1" style="margin-top: 0.5rem" *ngIf="selectedCountryCode">
+                                    {{selectedCountryCode}}
+                                </div>
+                                <div class="col-11">
+                                    <input type="text" class="form-control" [(ngModel)]="mobileNumber"
+                                        name="mobileNumber" placeholder="Mobile Number" required>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <!-- modal footer -->
+                        <div>
+                            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="!createSignupForm.form.valid">Register</button>
+                            <br>
+                            <p>
+                                <span class="font-weight-light">Already a member?</span>&nbsp;
+                                <a style="text-decoration-line: none;color: blue;cursor: pointer;transition: all .25s ease-in-out;"
+                                    data-dismiss="modal">Login</a>
+                            </p>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
